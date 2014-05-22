@@ -1,0 +1,23 @@
+<%= form_for(@sponsorship) do |f| %>
+  <% if @sponsorship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sponsorship.errors.count, "error") %> prohibited this sponsorship from being saved:</h2>
+
+      <ul>
+      <% @sponsorship.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.select :athlete_id, Athlete.all.collect { |p| [ p.name, p.id ] } %>
+  </div>
+  <div class="field">
+    <%= f.select :sponsor_id, Sponsor.all.collect { |p| [ p.name, p.id ] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
